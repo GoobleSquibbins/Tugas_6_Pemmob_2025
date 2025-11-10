@@ -25,7 +25,18 @@ class _FormDataState extends State<FormData> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Form Input Data")),
+      backgroundColor: const Color(0xFF000000), // main
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF1BD14C), // sec
+        title: const Text(
+          "Form Input Data",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+            color: Color(0xFFFFFFFF), // text
+          ),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Form(
@@ -34,7 +45,17 @@ class _FormDataState extends State<FormData> {
             children: [
               TextFormField(
                 controller: _nameController,
-                decoration: const InputDecoration(labelText: "Nama"),
+                decoration: const InputDecoration(
+                  labelText: "Nama",
+                  labelStyle: TextStyle(color: Color(0xFFFFFFFF)), // text
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Color(0xFF1BD14C)), // sec
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Color(0xFF1BD14C)), // sec
+                  ),
+                ),
+                style: const TextStyle(color: Color(0xFFFFFFFF)), // text
                 validator: (value) =>
                     value == null || value.isEmpty ? "Masukkan nama" : null,
               ),
@@ -42,7 +63,17 @@ class _FormDataState extends State<FormData> {
               const SizedBox(height: 10),
               TextFormField(
                 controller: _nimController,
-                decoration: const InputDecoration(labelText: "NIM"),
+                decoration: const InputDecoration(
+                  labelText: "NIM",
+                  labelStyle: TextStyle(color: Color(0xFFFFFFFF)),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Color(0xFF1BD14C)),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Color(0xFF1BD14C)),
+                  ),
+                ),
+                style: const TextStyle(color: Color(0xFFFFFFFF)),
                 validator: (value) =>
                     value == null || value.isEmpty ? "Masukkan NIM" : null,
               ),
@@ -50,7 +81,17 @@ class _FormDataState extends State<FormData> {
               const SizedBox(height: 10),
               TextFormField(
                 controller: _thnLahirController,
-                decoration: const InputDecoration(labelText: "Tahun Lahir"),
+                decoration: const InputDecoration(
+                  labelText: "Tahun Lahir",
+                  labelStyle: TextStyle(color: Color(0xFFFFFFFF)),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Color(0xFF1BD14C)),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Color(0xFF1BD14C)),
+                  ),
+                ),
+                style: const TextStyle(color: Color(0xFFFFFFFF)),
                 keyboardType: TextInputType.number,
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 validator: (value) {
@@ -65,23 +106,36 @@ class _FormDataState extends State<FormData> {
               ),
 
               const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    Navigator.pushNamed(
-                      context,
-                      '/tampil',
-                      arguments: {
-                        'name': _nameController.text,
-                        'nim': _nimController.text,
-                        'thnLahir':
-                            DateTime.now().year -
-                            int.parse(_thnLahirController.text),
-                      },
-                    );
-                  }
-                },
-                child: const Text("Kirim"),
+              Row(
+                mainAxisAlignment:
+                    MainAxisAlignment.end, // pushes button to the right
+                children: [
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF1BD14C), // sec
+                      foregroundColor: const Color(0xFFFFFFFF), // text
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.zero, // no rounding
+                      ),
+                    ),
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        Navigator.pushNamed(
+                          context,
+                          '/tampil',
+                          arguments: {
+                            'name': _nameController.text,
+                            'nim': _nimController.text,
+                            'thnLahir':
+                                DateTime.now().year -
+                                int.parse(_thnLahirController.text),
+                          },
+                        );
+                      }
+                    },
+                    child: const Text("Kirim"),
+                  ),
+                ],
               ),
             ],
           ),

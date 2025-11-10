@@ -8,7 +8,18 @@ class TampilData extends StatelessWidget {
     final args = ModalRoute.of(context)!.settings.arguments as Map;
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Tampilan Data")),
+      backgroundColor: const Color(0xFF000000), // main background
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF1BD14C), // sec
+        title: const Text(
+          "Tampilan Data",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+            color: Color(0xFFFFFFFF), // text
+          ),
+        ),
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -17,15 +28,28 @@ class TampilData extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Nama: ${args['name']}",
-                style: const TextStyle(fontSize: 20),
+                "${args['name']}",
+                style: const TextStyle(
+                  fontSize: 70,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFFFFFFFF), // text
+                ),
               ),
-              const SizedBox(height: 10),
-              Text("NIM: ${args['nim']}", style: const TextStyle(fontSize: 20)),
-              const SizedBox(height: 10),
+              const SizedBox(height: 5),
+              Text(
+                "NIM: ${args['nim']}",
+                style: const TextStyle(
+                  fontSize: 35,
+                  color: Color(0xFFFFFFFF), // text
+                ),
+              ),
+              const SizedBox(height: 30),
               Text(
                 "Umur: ${args['thnLahir']}",
-                style: const TextStyle(fontSize: 20),
+                style: const TextStyle(
+                  fontSize: 15,
+                  color: Color(0xFFFFFFFF), // text
+                ),
               ),
             ],
           ),
